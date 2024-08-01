@@ -1,6 +1,7 @@
 package com.nayla.recyclercardview;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -54,4 +55,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void btnTambah(View view) {
+
+        siswaList.add(new Siswa("Jihans", "Surabaya"));
+        adapter.notifyDataSetChanged();
+
+    }
 }

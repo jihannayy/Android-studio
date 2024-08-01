@@ -1,5 +1,6 @@
 package com.nayla.recyclercardview;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -32,7 +33,7 @@ public class SiswaAdapter extends RecyclerView.Adapter<SiswaAdapter.Viewolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Viewolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull Viewolder viewHolder, @SuppressLint("RecyclerView") int i) {
         Siswa siswa = siswaList.get(i);
         viewHolder.tvNama.setText(siswa.getNama());
         viewHolder.tvAlamat.setText(siswa.getAlamat());
@@ -62,9 +63,11 @@ public class SiswaAdapter extends RecyclerView.Adapter<SiswaAdapter.Viewolder> {
                         int id = item.getItemId();
 
                         if (id == R.id.menu_simpan) {
+
                             Toast.makeText(context, "Simpan Data"+siswa.getNama(), Toast.LENGTH_SHORT).show();
+
                         }else if (id == R.id.menu_hapus){
-                            siswaList.remove(viewHolder.getAdapterPosition());
+                            siswaList.remove(i);
                             notifyDataSetChanged();
                             Toast.makeText(context, "Sudah Dihapus"+siswa.getNama(), Toast.LENGTH_SHORT).show();
                         }
