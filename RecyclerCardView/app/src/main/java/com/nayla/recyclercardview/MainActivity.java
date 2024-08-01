@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         siswaList.add(new Siswa("Candra", "Surabaya"));
         siswaList.add(new Siswa("Arimby", "Surabaya"));
 
+
         adapter = new SiswaAdapter(this, siswaList);
         recyclerView.setAdapter(adapter);
 

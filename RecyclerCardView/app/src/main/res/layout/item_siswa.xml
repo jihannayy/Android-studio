@@ -15,10 +15,19 @@
         app:cardCornerRadius="5dp">
 
         <LinearLayout
-            android:layout_width="246dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingTop="7dp">
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvMenu"
+                android:layout_width="38dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="&#8942;"
+                android:textAlignment="center"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvNama"
