@@ -32,7 +32,7 @@ public class SiswaAdapter extends RecyclerView.Adapter<SiswaAdapter.Viewolder> {
     public void onBindViewHolder(@NonNull Viewolder viewHolder, int i) {
         Siswa siswa = siswaList.get(i);
         viewHolder.tvNama.setText(siswa.getNama());
-        viewHolder.tvAlamat.setText(siswa.getNama());
+        viewHolder.tvAlamat.setText(siswa.getAlamat());
     }
 
 
