@@ -1,5 +1,6 @@
 package com.nayla.sqlitedatabase;
 
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -130,14 +132,35 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void deleteData(String id){
-        String idbarang = id;
+         idbarang = id;
         String sql = "DELETE FROM tblbarang WHERE idbarang = "+idbarang+";";
-        if (db.runSQL(sql)){
-            pesan("Data Sudah Dihapus");
-            selectData();
-        }else {
-            pesan("Data tidak bisa dihapus");
-        }
+
+
+        AlertDialog.Builder al = new AlertDialog.Builder(this);
+        al.setTitle("PERINGATAN !");
+        al.setMessage("Yakin akan menghapus ?");
+        al.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int which) {
+                if (db.runSQL(sql)){
+                    pesan("Data Sudah Dihapus");
+                    selectData();
+                }else {
+                    pesan("Data tidak bisa dihapus");
+                }
+            }
+        });
+
+        al.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int which) {
+                dialogInterface.cancel();
+            }
+        });
+
+        al.show();
+
+
 
     }
 
