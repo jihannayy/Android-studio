@@ -54,6 +54,7 @@ public class BarangAdapter extends RecyclerView.Adapter<BarangAdapter.ViewHolder
 
                         }else {
                             Toast.makeText(context, "HAPUS", Toast.LENGTH_SHORT).show();
+                            ((MainActivity)context).deleteData(barangList.get(i).getIdbarang());
                         }
 
 
