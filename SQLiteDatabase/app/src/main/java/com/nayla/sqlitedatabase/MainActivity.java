@@ -12,12 +12,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     Database db;
     EditText etBarang, etStok, etHarga;
     TextView tvPilihan;
+
+    List<Barang> databarang = new ArrayList<Barang>();
+    BarangAdapter adapter;
+    RecyclerView rcvBarang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +49,10 @@ public class MainActivity extends AppCompatActivity {
         etStok = findViewById(R.id.etStok);
         etHarga = findViewById(R.id.etHarga);
         tvPilihan = findViewById(R.id.tvPilihan);
+        rcvBarang = findViewById(R.id.rcvBarang);
+
+        rcvBarang.setLayoutManager(new LinearLayoutManager(this));
+        rcvBarang.setHasFixedSize(true);
 
     }
 
@@ -56,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
                String sql = "INSERT INTO tblbarang (barang, stok, harga) VALUES ('"+barang+"',"+stok+", "+harga+")";
                if(db.runSQL(sql)){
                    pesan("insert berhasil");
+                   selectData();
                }else {
                    pesan("Insert gagal");
                }
@@ -83,7 +97,24 @@ public class MainActivity extends AppCompatActivity {
     public void selectData(){
         String sql = "SELECT * FROM tblbarang ORDER BY barang ASC";
         Cursor cursor = db.select(sql);
-        pesan(cursor.getCount()+"");
+        databarang.clear();
+        if (cursor.getCount() > 0){
+            while (cursor.moveToNext()){
+                String idbarang = cursor.getString(cursor.getColumnIndex("idbarang"));
+                String barang = cursor.getString(cursor.getColumnIndex("barang"));
+                String stok = cursor.getString(cursor.getColumnIndex("stok"));
+                String harga = cursor.getString(cursor.getColumnIndex("harga"));
+
+                databarang.add(new Barang(idbarang,barang,stok,harga));
+            }
+
+            adapter = new BarangAdapter(this,databarang);
+            rcvBarang.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+
+        }else {
+            pesan("Data Kosong");
+        }
     }
 
 
