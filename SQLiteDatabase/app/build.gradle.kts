@@ -3,12 +3,12 @@ plugins {
 }
 
 android {
-    namespace = "com.example.sqlitedatabase"
+    namespace = "com.nayla.sqlitedatabase"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.sqlitedatabase"
-        minSdk = 24
+        applicationId = "com.nayla.sqlitedatabase"
+        minSdk = 28
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"

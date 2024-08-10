@@ -1,4 +1,4 @@
-package com.example.sqlitedatabase;
+package com.nayla.sqlitedatabase;
 
 import org.junit.Test;
 
