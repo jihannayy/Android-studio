@@ -59,5 +59,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void tampil(View view) {
+        String barang = sharedPreferences.getString("barang", "");
+        float stok = sharedPreferences.getFloat("stok", 0);
+
+        etBarang.setText(barang);
+        etStok.setText(stok+"");
     }
 }
