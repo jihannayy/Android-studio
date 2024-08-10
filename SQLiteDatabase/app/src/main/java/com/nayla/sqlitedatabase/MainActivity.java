@@ -50,10 +50,14 @@ public class MainActivity extends AppCompatActivity {
         if (barang.isEmpty() || stok.isEmpty() || harga.isEmpty()){
             pesan("Data Kosong");
         }else{
-           if (tvPilihan.equals("insert")){
+           if (pilihan.equals("insert")){
                String sql = "INSERT INTO tblbarang (barang, stok, harga) VALUES ('"+barang+"',"+stok+", "+harga+")";
-               db.runSQL(sql);
-               pesan("insert berhasil");
+               if(db.runSQL(sql)){
+                   pesan("insert berhasil");
+               }else {
+                   pesan("Insert gagal");
+               }
+
            }else {
                pesan("update");
            }
